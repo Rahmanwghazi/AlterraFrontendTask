@@ -1,0 +1,81 @@
+.navbar {
+    padding-left: 120px;
+    padding-right: 120px;
+    margin-left: 20px;
+    margin-right: 20px;
+    background-color: white;
+}
+
+.nav-link {
+    color: #19345F !important;
+    font-size: 20px;
+    margin-right: 20px;
+}
+
+a:hover { 
+    color: #F37524 !important; 
+}
+
+header {
+    padding: 215px;
+    background-image: url(../img/bg-img.png);
+    background-size: cover;
+}
+
+header .intro{
+    color:#19345F ;
+    margin-left: -100px;
+    margin-top: 50px;
+}
+
+header .name{
+    font-size: 130px;
+}
+
+header .desc{
+    font-size: 50px;
+}
+
+header .btn-getintouch {
+    background-color: #F37524;
+    color: #ffffff;
+    border-radius: 50px;
+    font-size: 22px;
+    width: 160px;
+    height: 50px;
+}
+
+
+form{
+    margin-top: 120px;
+    margin-right: auto;
+} 
+
+label{
+    font-size: 20px;
+    font-weight:600;
+    color: #19345F;
+}
+
+form h1{
+    color: #19345F;
+    margin-bottom: 50px;
+}
+
+.btn-p{
+    background-color: #F37524;
+    color: #ffffff;
+    border-radius: 50px;
+    font-size: 22px;
+    width: 160px;
+    height: 50px;
+}
+
+.btn-p:hover{
+    background-color:#19345F ;
+    color: white !important;
+}
+
+
+
+
