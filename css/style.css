@@ -1,38 +1,83 @@
+@font-face {
+    font-family: 'roboto';
+    src: url(https://fonts.googleapis.com/css2?family=Roboto&display=swap);
+}
+
+#home {
+    background: url(../img/bg-img.png) no-repeat center center fixed;
+    background-size: cover;
+}
+
+#contact .required label {
+    font-weight: bold;
+}
+
+#contact .required label:after {
+    color: #e32;
+    content: ' *';
+    display: inline;
+}
+
+.left-image{
+    background-image: url('../img/charles-rRWiVQzLm7k-unsplash.jpg');
+    height: 912px;
+    background-position: center;
+    background-size: 100%;
+    position: relative;
+}
+
+.overlay {
+    background-color: rgba(7, 35, 82, 0.65);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin-left: -14px;
+}
+
+
 .navbar {
     padding-left: 120px;
     padding-right: 120px;
     margin-left: 20px;
     margin-right: 20px;
     background-color: white;
+    height: 70px;
+    font-family: roboto;
 }
 
 .nav-link {
     color: #19345F !important;
-    font-size: 20px;
+    font-size: 17px;
     margin-right: 20px;
 }
 
-a:hover { 
-    color: #F37524 !important; 
+.nav-link:active {
+    color: #F37524 !important;
+}
+
+a:hover {
+    color: #F37524 !important;
+}
+
+.active {
+    color: #F37524 !important;
 }
 
 header {
-    padding: 215px;
-    background-image: url(../img/bg-img.png);
+    padding: 20px;
     background-size: cover;
+    margin-top: 170px;
 }
 
-header .intro{
-    color:#19345F ;
-    margin-left: -100px;
-    margin-top: 50px;
+header .intro {
+    color: #19345F;
 }
 
-header .name{
+header .name {
     font-size: 130px;
 }
 
-header .desc{
+header .desc {
     font-size: 50px;
 }
 
@@ -46,23 +91,23 @@ header .btn-getintouch {
 }
 
 
-form{
+form {
     margin-top: 120px;
     margin-right: auto;
-} 
+}
 
-label{
+label {
     font-size: 20px;
-    font-weight:600;
+    font-weight: 600;
     color: #19345F;
 }
 
-form h1{
+form h1 {
     color: #19345F;
     margin-bottom: 50px;
 }
 
-.btn-p{
+.btn-p {
     background-color: #F37524;
     color: #ffffff;
     border-radius: 50px;
@@ -71,11 +116,7 @@ form h1{
     height: 50px;
 }
 
-.btn-p:hover{
-    background-color:#19345F ;
+.btn-p:hover {
+    background-color: #19345F;
     color: white !important;
 }
-
-
-
-
