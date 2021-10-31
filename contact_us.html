@@ -18,76 +18,94 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
         integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous">
     </script>
-    <title>Document</title>
+</head>
+
+<body>
+</body>
+
+</html>
+<title>Document</title>
 </head>
 
 <body id="contact">
-        <div class="row">
-            <div class="left-image col-md-4">
-                <div class="overlay d-flex">
-                    <img src="img/logo-ALTA@2x.png" class="m-auto">
-                </div>
-            </div>
-            <div class="col-md-7 ml-5 mr-5 px-5">
-                <form class="needs-validation" novalidate>
-                    <h1 class="label">
-                        Contact Us
-                    </h1>
-                    <div class="form-group">
-                        <label for="validationCustom03">Full name <span style="color:#ff0000">*</span> </label>
-                        <input type="text" class="form-control" placeholder="Your full name here..." required>
-                        <div class="invalid-feedback">
-                            Please fill your name
-                        </div>
-
-                    </div>
-                    <div class="form-group">
-                        <label>Email address <span style="color:#ff0000">*</span></label>
-                        <input type="email" class="form-control" " placeholder=" name@example.com" required>
-                        <div class="invalid-feedback">Please fill out this field.</div>
-                    </div>
-                    <div class="form-group">
-                        <label>Phone number <span style="color:#ff0000">*</span></label>
-                        <input type="text" class="form-control" placeholder="+6285xxxxxxxx" required>
-                        <div class="invalid-feedback">Please fill out this field.</div>
-                    </div>
-                    <div class="form-group">
-                        <label>Nationality</label>
-                        <select class="form-control">
-                            <option>Indonesian</option>
-                            <option>Other</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Message</label>
-                        <textarea class="form-control" rows="3"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-p" formaction="javascript:alert('Message sent!')""> Submit</button>
-
-                </form>
-
-                <script>
-                    // Example starter JavaScript for disabling form submissions if there are invalid fields
-                    (function() {
-                      'use strict';
-                      window.addEventListener('load', function() {
-                        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                        var forms = document.getElementsByClassName('needs-validation');
-                        // Loop over them and prevent submission
-                        var validation = Array.prototype.filter.call(forms, function(form) {
-                          form.addEventListener('submit', function(event) {
-                            if (form.checkValidity() === false) {
-                              event.preventDefault();
-                              event.stopPropagation();
-                            }
-                            form.classList.add('was-validated');
-                          }, false);
-                        });
-                      }, false);
-                    })();
-                    </script>
+    <div class="row mx-auto">
+        <div class="col-md-4 left-image">
+            <div class="overlay d-flex">
+                <img src="img/logo-ALTA-v2.png" class="m-auto" style="opacity: 50%;">
             </div>
         </div>
+        <div class="col-md-6 mx-auto px-5">
+            <form class="needs-validation" novalidate action="review_message.html">
+                <h1 class="label">
+                    Contact Us
+                </h1>
+                <div class="form-group">
+                    <label for="validationCustom03">Full name <span style="color:#ff0000">*</span> </label>
+                    <input type="text" id="name" class="form-control" placeholder="Your full name here..." required>
+                    <div class="invalid-feedback">
+                        Full name cannot be empty
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label>Email address <span style="color:#ff0000">*</span></label>
+                    <input type="email" id="email" class="form-control" placeholder=" name@example.com" required>
+                    <div class="invalid-feedback">Email address cannot be empty</div>
+                </div>
+                <div class="form-group">
+                    <label>Phone number <span style="color:#ff0000">*</span></label>
+                    <input type="text" id="phone" class="form-control" placeholder="+6285xxxxxxxx"
+                        pattern="[+][0-9]{14}" required>
+                    <div class="invalid-feedback">Phone number cannot be empty</div>
+                </div>
+                <div class="form-group">
+                    <label>Nationality</label>
+                    <select id="nationality" class="form-control">
+                        <option value="" selected disabled>Select</option>
+                        <option value="Indonesian">Indonesian</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea maxlength="500" class="form-control mt-1" id="message" rows="3"></textarea>
+                </div>
+                <input type="submit" class="btn btn-p" value="submit" onclick="getValue();"></button>
+            </form>
+            <script>
+                (
+                    function () {
+                        'use strict';
+                        window.addEventListener('load', function () {
+                            var forms = document.getElementsByClassName('needs-validation');
+                            var validation = Array.prototype.filter.call(forms, function (form) {
+                                form.addEventListener('submit', function (event) {
+                                    if (form.checkValidity() === false) {
+                                        event.preventDefault();
+                                        event.stopPropagation();
+                                    }
+                                    form.classList.add('was-validated');
+                                }, false);
+                            });
+                        }, false);
+                    })();
+
+                function getValue() {
+                    let name = document.getElementById("name").value;
+                    localStorage.setItem("name", name);
+                    let email = document.getElementById("email").value;
+                    localStorage.setItem("email", email);
+                    let phone = document.getElementById("phone").value;
+                    localStorage.setItem("phone", phone);
+                    let nationality = document.getElementById("nationality").value;
+                    localStorage.setItem("nationality", nationality);
+                    let message = document.getElementById("message").value;
+                    localStorage.setItem("message", message);
+                    return false;
+                }
+            </script>
+        </div>
+    </div>
     </div>
 </body>
 

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Document</title>
+</head>
+
+<body id="review">
+    <div class="footer">
+        <img src="img/img-dot@2x.png" style="margin-left: 470px; margin-top: 25px;">
+    </div>
+    <div class="card col-lg-5 col-md-7 col-sm-10 mx-auto border rounded p-5">
+        <div>
+            <h5 class="col1">Nama</h5>
+            <h5 id="name">: </h5>
+
+            <h5 class="col1">Email Address</h5>
+            <h5 id="email">: </h5>
+
+            <h5 class="col1">Phone Number</h5>
+            <h5 id="phone">: </h5>
+
+            <h5 class="col1">Nationality</h5>
+            <h5 id="nationality">: </h5>
+
+            <h5 id="message"> </h5>
+        </div>
+        <div class="desc">
+            <hr>
+            <h4>Thanks for contacting us!</h4>
+            <h4>We will be in touch with you shortly</h4>
+            <a href="home.html" class="btn btn-p px-4 mt-2 mb-0">Home </a>
+        </div>
+
+    </div>
+
+
+    <script>
+        document.getElementById("name").textContent += localStorage.getItem('name');
+        document.getElementById("email").textContent += localStorage.getItem('email');
+        document.getElementById("phone").textContent += localStorage.getItem('phone');
+        document.getElementById("nationality").textContent += localStorage.getItem('nationality');
+        document.getElementById("message").textContent += localStorage.getItem('message');
+    </script>
+</body>
+
+</html>

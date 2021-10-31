@@ -1,7 +1,10 @@
 @font-face {
-    font-family: 'roboto';
+    font-family: 'Roboto';
     src: url(https://fonts.googleapis.com/css2?family=Roboto&display=swap);
 }
+html, body {
+	font-family: "Roboto", sans-serif;
+} 
 
 #home {
     background: url(../img/bg-img.png) no-repeat center center fixed;
@@ -18,20 +21,20 @@
     display: inline;
 }
 
-.left-image{
+.left-image {
     background-image: url('../img/charles-rRWiVQzLm7k-unsplash.jpg');
-    height: 912px;
+    height: 100vh;
     background-position: center;
-    background-size: 100%;
+    background-size: cover;
     position: relative;
 }
 
 .overlay {
     background-color: rgba(7, 35, 82, 0.65);
-    position: absolute;
-    width: 100%;
+    position: relative;
+    width: 105%; 
     height: 100%;
-    margin-left: -14px;
+    margin-left: -15px;
 }
 
 
@@ -75,6 +78,7 @@ header .intro {
 
 header .name {
     font-size: 130px;
+    margin-top: -10px;
 }
 
 header .desc {
@@ -114,9 +118,41 @@ form h1 {
     font-size: 22px;
     width: 160px;
     height: 50px;
+    margin-bottom: 50px;
 }
 
 .btn-p:hover {
     background-color: #19345F;
     color: white !important;
+}
+
+#review {
+    color: #19345F;
+}
+
+#message {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    font-style: italic;
+    text-align: justify;
+}
+
+.card {
+    background-color: white;
+    margin-top: 112px;
+}
+
+.col1 {
+    width: 200px;
+    float: left;
+}
+
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #EDF6FF;
+    height: 220px;
 }
