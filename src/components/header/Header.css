@@ -1,12 +1,8 @@
-/* @font-face {
-    font-family: 'Roboto';
-    src: url(https://fonts.googleapis.com/css2?family=Roboto&display=swap);
-} */
-
 body{
-    background: url(../../img/bg-img.png) no-repeat center center fixed;
+    background: url(../../assets/bg-img.png) no-repeat center center fixed;
     background-size: cover;
 }
+
 html, body {
 	font-family: "Roboto", sans-serif;
 } 

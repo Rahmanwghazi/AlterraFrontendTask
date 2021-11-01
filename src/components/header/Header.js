@@ -1,5 +1,5 @@
 import './Header.css'
-import bg from '../../img/matthew-hamilton-tNCH0sKSZbA-unsplash.jpg'
+import bg from '../../assets/matthew-hamilton-tNCH0sKSZbA-unsplash.jpg'
 
 
 const Header = () => {
