@@ -1,0 +1,57 @@
+/* @font-face {
+    font-family: 'Roboto';
+    src: url(https://fonts.googleapis.com/css2?family=Roboto&display=swap);
+} */
+
+body{
+    background: url(../../img/bg-img.png) no-repeat center center fixed;
+    background-size: cover;
+}
+html, body {
+	font-family: "Roboto", sans-serif;
+} 
+
+
+header {
+    padding: 20px;
+    background-size: cover;
+    margin-top: 170px;
+}
+
+header .intro {
+    color: #19345F;
+    text-align: left;
+}
+
+header .name {
+    font-size: 130px;
+    margin-top: -10px;
+}
+
+header .desc {
+    font-size: 50px;
+}
+
+header .btn-getintouch {
+    background-color: #F37524;
+    color: #ffffff;
+    border-radius: 50px;
+    font-size: 22px;
+    width: 160px;
+    height: 50px;
+}
+
+.btn-p {
+    background-color: #F37524;
+    color: #ffffff;
+    border-radius: 50px;
+    font-size: 22px;
+    width: 160px;
+    height: 50px;
+    margin-bottom: 50px;
+}
+
+.btn-p:hover {
+    background-color: #19345F;
+    color: white !important;
+}
