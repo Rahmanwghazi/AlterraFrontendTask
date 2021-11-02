@@ -1,8 +1,8 @@
 import './App.css';
-//import ContactUs from './components/form/ContactUs';
+// import ContactUs from './components/form/Form';
 
 import Header from './components/header/Header';
-import Navbar from './components/navbar/Navbar'
+import Navbar from './components/navbar/Navbar';
 
 function App() {
   return (
@@ -10,7 +10,6 @@ function App() {
       <Navbar />
       <Header />
       {/* <ContactUs /> */}
-   
     </div>
   );
 }

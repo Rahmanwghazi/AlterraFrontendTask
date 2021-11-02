@@ -1,23 +1,14 @@
-import './ContactUs.css'
-import logo from '../../assets/logo-ALTA-v2.png'
+import './Form.css'
+import LeftImage from '../left-image/LeftImage';
 
 const starStyle = {
     color: '#ff0000',
 };
 
-const imageStyle = {
-    opacity: 50,
-    width: 350
-}
-
 const ContactUs = () => {
     return (
         <div className="row mx-auto">
-            <div className="col-md-4 left-image">
-                <div className="overlay d-flex">
-                    <img src={logo} className="m-auto" alt="logo" style={imageStyle}></img>
-                </div>
-            </div>
+            <LeftImage />
             <div className="col-md-6 mx-auto px-5">
                 <form className="needs-validation" noValidate action="review_message.html">
                     <h1 className="label">
