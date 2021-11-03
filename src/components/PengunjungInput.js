@@ -56,14 +56,13 @@ class PengunjungInput extends Component{
             editMode.display = 'none'
         }
 
-
         return (
             <div>
                 <div onSubmit={()=>{}} style={viewMode}>
                     <p>Masukkan nama Anda</p>
-                    <input type="text" placeholder="Nama anda" value={this.state.nama} name="nama" onChange={this.onChange}></input>
+                    <input type="text" placeholder="Nama anda" value={this.state.nama} name="nama" onChange={this.onChange}></input><br/><br/>
                     <p>Masukkan umur Anda</p>
-                    <input type="text" placeholder="Umur anda" value={this.state.umur} name="umur" onChange={this.onChange}></input>
+                    <input type="text" placeholder="Umur anda" value={this.state.umur} name="umur" onChange={this.onChange}></input><br/><br/>
                     <p>Masukkan jenis kelamin Anda</p>
                     <select onChange={this.onChange} name="jenisKelamin">
                         <option value="Pria" selected>Pria</option>
