@@ -1,57 +1,48 @@
 import { v4 as uuidv4 } from 'uuid'
-import { Component } from "react";
+import { Component, useState } from "react";
 import TodoList from './TodoList';
 import TodoInsert from './TodoInsert';
 import style from './Home.module.css'
 
-
-class Home extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            data: [
-                {
-                    id: uuidv4(),
-                    todo: "belajar event handling",
-                    completed: true
-                },
-                {
-                    id: uuidv4(),
-                    todo: "belajar graphql",
-                    completed: false
-                }
-
-            ]
-        }
+const initValue = [
+    {
+        id: uuidv4(),
+        todo: "belajar event handling",
+        completed: true
+    },
+    {
+        id: uuidv4(),
+        todo: "belajar graphql",
+        completed: false
     }
+]
+function Home() {
+    const [data, setData] = useState(initValue)
 
-    addTodo = (newTodo) => {
+    const addTodo = (newTodo) => {
         const newTodolist = { id: uuidv4(), ...newTodo }
 
-        this.setState({ data: [...this.state.data, newTodolist] })
+        setData((oldData) => [...oldData, newTodolist])
     }
 
-    onChangeCheckBox = (id) => {
-        const itemChecked = this.state.data.map((item)=> item.id === id ? { ...item, completed: !item.completed} : item) 
-
-        this.setState({data: itemChecked})
+    const onChangeCheckBox = (id) => {
+        setData((oldData) => oldData.map((item) => {
+            return item.id === id ? { ...item, completed: !item.completed } : item
+        }))
     }
 
-    deleteTodo = (id) => {
-        const filteredTodo = this.state.data.filter((item) => item.id !== id)
-
-        this.setState({ data: filteredTodo })
+    const deleteTodo = (id) => {
+        setData((oldData) => oldData.filter((item) => {
+            return item.id !== id
+        }))
     }
-
-    render() {
-        return (
-            <>
-                <h1 className={style.title}>Todos</h1>
-                <TodoInsert addTodo={this.addTodo} />
-                <TodoList onChangeCheckBox={this.onChangeCheckBox} data={this.state.data} deleteTodo={this.deleteTodo} />
-            </>
-        )
-    }
+    return (
+        <>
+            <h1 className={style.title}>Todos</h1>
+            <TodoInsert addTodo={addTodo} />
+            <TodoList onChangeCheckBox={onChangeCheckBox} data={data} deleteTodo={deleteTodo} />
+        </>
+    )
 }
 
 export default Home

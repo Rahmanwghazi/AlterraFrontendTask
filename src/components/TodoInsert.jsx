@@ -1,46 +1,41 @@
-import { Component } from "react";
+import { useState } from 'react'
 import style from './TodoInsert.module.css'
 
-class TodoInsert extends Component {
-    state = {
-        todo: "",
-        completed: false
-    }
+const initData = {
+    todo: "",
+    completed: false
+}
 
-    onChange = (event) => {
-        this.setState({
+function TodoInsert(props) {
+    const [data, setData] = useState(initData)
+
+    const onChange = (event) => {
+        setData({
+            ...data,
             [event.target.name]: event.target.value
         })
     }
 
-    onSubmit = (event) => {
+    const onSubmit = (event) => {
         event.preventDefault()
-        const fieldIsFulFilled = this.state.todo
-        if (fieldIsFulFilled) {
-            const newData = {
-                todo: this.state.todo,
-                completed: this.state.completed
-            }
-            this.props.addTodo(newData)
-            this.setState({
-                todo: "",
-                completed: false
-            })
+        const newData = {
+            todo: data.todo,
+            completed: data.completed
         }
-        else {
-
-        }
+        props.addTodo(newData)
+        setData({
+            todo: "",
+            completed: false
+        })
     }
-
-    render() {
         return (
             <>
-                <input className={style.textField} type="text" placeholder="add todo" value={this.state.todo} name="todo" onChange={this.onChange}></input>
-                <button onClick={this.onSubmit} className={style.button} disabled={this.state.todo.length < 1}>submit</button>
+                <input className={style.textField} type="text" placeholder="add todo" value={data.todo} name="todo" onChange={onChange}></input>
+                <button onClick={onSubmit} className={style.button} disabled={data.todo.length < 1}>submit</button>
             </>
         )
 
-    }
+
 }
 
 export default TodoInsert
