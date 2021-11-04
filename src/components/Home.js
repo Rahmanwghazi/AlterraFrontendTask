@@ -1,69 +1,67 @@
-import {v4 as uuidv4} from 'uuid'
-import { Component  } from "react";
+import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid'
 import ListPengunjung from './ListPengunjung';
 import PengunjungInput from './PengunjungInput';
 
-class Home extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            data : [
-                {
-                    id : uuidv4(),
-                    nama : "Yoga",
-                    umur : 22,
-                    jenisKelamin : "Pria"
-                },
-                {
-                    id : uuidv4(),
-                    nama : "Ria",
-                    umur : 19,
-                    jenisKelamin : "Wanita"
-                },
-                {
-                    id : uuidv4(),
-                    nama : "Fahmi",
-                    umur : 25,
-                    jenisKelamin : "Pria"
-                },
-                {
-                    id : uuidv4(),
-                    nama : "Lala",
-                    umur : 21,
-                    jenisKelamin : "Wanita"
-                },
-                {
-                    id : uuidv4(),
-                    nama : "Ivan",
-                    umur : 25,
-                    jenisKelamin : "Pria"
-                }
 
-            ]
-        }
+const initValue = [{
+    id: uuidv4(),
+    nama: "Yoga",
+    umur: 22,
+    jenisKelamin: "Pria"
+},
+{
+    id: uuidv4(),
+    nama: "Ria",
+    umur: 19,
+    jenisKelamin: "Wanita"
+},
+{
+    id: uuidv4(),
+    nama: "Fahmi",
+    umur: 25,
+    jenisKelamin: "Pria"
+},
+{
+    id: uuidv4(),
+    nama: "Lala",
+    umur: 21,
+    jenisKelamin: "Wanita"
+},
+{
+    id: uuidv4(),
+    nama: "Ivan",
+    umur: 25,
+    jenisKelamin: "Pria"
+}
+]
+
+function Home() {
+    const [data, setData] = useState(initValue)
+
+    const hapusPengunjung = (id) => {
+        setData((oldData) => oldData.filter(item => {
+            return item.id !== id
+        }))
     }
 
-    hapusPengunjung = (id) => {
-        const newListPengunjung = this.state.data.filter((item)=> item.id !==  id)
-
-        this.setState({data:newListPengunjung})
-    }
-
-    tambahPengunjung = (newUser) => {
+    const tambahPengunjung = (newUser) => {
         //console.log("tambahh")
-        const newPengunjung = {id: uuidv4(), ...newUser}
-
-        this.setState({data: [...this.state.data, newPengunjung]})
+        const newPengunjung = {
+            id: uuidv4(),
+            ...newUser
+        }
+        setData((oldData) => [...oldData, newPengunjung])
     }
 
-    render(){
-        return (
-            <div>
-                <ListPengunjung data={this.state.data} hapusPengunjung={this.hapusPengunjung}/>
-                <PengunjungInput tambahPengunjung={this.tambahPengunjung}/>
-            </div>
-        )
-    }
+
+    return (
+        <div>
+            <ListPengunjung data={data} hapusPengunjung={hapusPengunjung} />
+            <PengunjungInput tambahPengunjung={tambahPengunjung} />
+        </div>
+    )
+
 }
 
 export default Home
