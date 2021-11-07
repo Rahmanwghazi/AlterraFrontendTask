@@ -1,8 +1,15 @@
 import { v4 as uuidv4 } from 'uuid'
-import { Component, useState } from "react";
-import TodoList from './TodoList';
-import TodoInsert from './TodoInsert';
+import { useState } from "react";
+import TodoList from '../../components/todo_list/TodoList';
+import TodoInsert from '../../components/todo_field/TodoField';
 import style from './Home.module.css'
+import Navbar from '../../components/navbar/Navbar';
+
+const contentStyle = {
+    position: "fixed",
+    top: "20%",
+    left: "40%",
+}
 
 const initValue = [
     {
@@ -38,9 +45,13 @@ function Home() {
     }
     return (
         <>
-            <h1 className={style.title}>Todos</h1>
-            <TodoInsert addTodo={addTodo} />
-            <TodoList onChangeCheckBox={onChangeCheckBox} data={data} deleteTodo={deleteTodo} />
+            <Navbar />
+            <div style={contentStyle}>
+                <h1 className={style.title}>Todos</h1>
+                <TodoInsert addTodo={addTodo} />
+                <TodoList onChangeCheckBox={onChangeCheckBox} data={data} deleteTodo={deleteTodo} />
+            </div>
+
         </>
     )
 }
