@@ -1,4 +1,4 @@
-import Navbar from '../../components/navbar/Navbar';
+import {  Link } from "react-router-dom";
 
 const textStyle = {
     position: "fixed",
@@ -17,11 +17,12 @@ const textStyle2 = {
 
 const NotFoundPage = () => {
     return (
-        <>
-        <Navbar />
+        <div>
             <h1 style={textStyle2}>404</h1>
-            <h2 style={textStyle}> Oops! Something went wrong!</h2>
-        </>
+            <h2 style={textStyle}> Oops! Something went wrong! 
+                <Link to="/" href="/#"> Back to home </Link>
+            </h2>
+        </div>
     )
 }
 
