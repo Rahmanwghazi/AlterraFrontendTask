@@ -1,28 +1,66 @@
-import React, { useState, useRef} from 'react';
+import React, { useState, useRef } from 'react';
+import './Form.css'
 
-export default function FormPage(){
-    const emptyData ={
-        judul: "",
-        pengarang: "",
-        cetakan: "",
-        tahunTerbit: 0,
-        kotaTerbit: "",
-        harga: 0
+export default function FormPage() {
+    const surat = useRef(null);
+    const emptyData = {
+        nama: "",
+        email: "",
+        handphone: "",
+        harapan: ""
     }
+    const [data, setData] = useState(emptyData);
+    const [nameErrMsg, setNameErrMsg] = useState();
+    const [emailErrMsg, setEmailErrMsg] = useState();
+    const [hpErrMsg, setHpErrMsg] = useState();
+    const [option] = useState([
+        {
+            label: "Pilih salah satu program",
+            value: "",
+        },
+        {
+            label: "Coding Backend with Golang",
+            value: "Coding Backend with Golang"
+        },
+        {
+            label: "Coding Frontend with ReactJS",
+            value: "Coding Frontend with ReactJS"
+        },
+        {
+            label: "Fullstack Developer",
+            value: "Fullstack Developer"
+        }
+    ]);
 
-    const [data, setData] = useState(emptyData)
-    const fotoSampul = useRef(null)
-    const regex = /^[A-Za-z ]*$/;
-    const [errMsg, setErrMsg] = useState("")
+    const nameRegex = /^[A-Za-z ]*$/;
+    const hpRegex = /^[0-9]{9,14}$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
     const handleInput = e => {
         const name = e.target.name;
         const value = e.target.value;
 
-        if (name === "pengarang"){
-            if(regex.test(value)){
-               setErrMsg("")
-            }else{
-                setErrMsg("Nama Pengarang Harus Berupa Huruf")
+        if (name === "nama") {
+            if (nameRegex.test(value)) {
+                setNameErrMsg("")
+            } else {
+                setNameErrMsg("Nama Lengkap Harus Berupa Huruf")
+            }
+        }
+
+        if (name === "handphone") {
+            if (hpRegex.test(value)) {
+                setHpErrMsg("")
+            } else {
+                setHpErrMsg("No Handphone Tidak Sesuai")
+            }
+        }
+
+        if (name === "email") {
+            if (emailRegex.test(value)) {
+                setEmailErrMsg("")
+            } else {
+                setEmailErrMsg("Email Tidak Sesuai")
             }
         }
 
@@ -30,59 +68,71 @@ export default function FormPage(){
             ...data,
             [name]: value
         })
-        console.log("ini data",data)
     }
 
     const handleSumbit = (e) => {
-        if(errMsg !== ""){
-            alert("terdapat data yang tidak sesuai")
-        }else{
-            alert(`data buku "${data.judul}" berhasil ditermia`)
+        if ((nameErrMsg !== "") || (hpErrMsg !== "") || (emailErrMsg !== "")) {
+            alert("data pendftar tidak sesuai")
+        } else {
+            alert(`data Pendaftar "${data.nama}" berhasil ditermia`)
+            resetData()
         }
-        resetData()
         e.preventDefault()
     }
 
-    const resetData = () => {
+    const resetData = (item) => {
         setData(emptyData);
-        setErrMsg("");
+        setNameErrMsg("");
+        setHpErrMsg("");
+        setEmailErrMsg("");
+        item.selectedIndex = 0;
     }
+
     return (
         <div className={"container"}>
-        <h1 style={{ "textAlign": "center" }}>Formulir Buku Baru</h1>
-        <form onSubmit={handleSumbit}>
-            <label>
-                Judul:<br/>
-                <input type="text" name="judul" required value={data.judul} onChange={handleInput}/>
-            </label><br/>
-            <label>
-                Pengarang:<br/>
-                <input type="text" name="pengarang" required value={data.pengarang} onChange={handleInput}/>
-            </label><br/>
-            <label>
-                Cetakan:<br/>
-                <input type="text" name="cetakan" value={data.cetakan} onChange={handleInput}/>
-            </label><br/>
-            <label>
-                Tahun Terbit:<br/>
-                <input type="number" name="tahunTerbit" value={data.tahunTerbit} onChange={handleInput}/>
-            </label><br/>
-            <label>
-                Kota Terbit:<br/>
-                <input type="text" name="kotaTerbit" value={data.kotaTerbit} onChange={handleInput}/>
-            </label><br/>
-            <label>
-                Harga:<br/>
-                <input type="number" name="harga" value={data.harga} onChange={handleInput}/>
-            </label><br/>
-            <label>
-                Foto sampul:<br/>
-                <input type="file" ref={fotoSampul}/>
-            </label><br/>
-            <span style={{color:"red"}}>{errMsg}</span><br/>
-            <input type="submit" value="Submit" onSubmit={handleSumbit}/>
-            <button onClick={resetData}>Reset</button>
-        </form>
+            <h1 style={{ "textAlign": "center" }}>Pendaftaran Peserta Coding Bootcamp</h1>
+            <form onSubmit={handleSumbit}>
+                <div className="form-group">
+                    <label>Nama:</label>
+                    <input className="form-control" type="text" name="nama" required value={data.nama} onChange={handleInput} />
+                </div>
+                <div className="form-group">
+                    <label>Email:</label>
+                    <input className="form-control" type="email" name="email" required value={data.email} onChange={handleInput} />
+                </div>
+                <div className="form-group">
+                    <label>
+                        No Handphone: </label>
+                    <input className="form-control" type="text" name="handphone" value={data.handphone} onChange={handleInput} required />
+                </div>
+                <div className="form-group">
+                    <label>Latar Belakang Pendidikan: </label> <br />
+                    <input type="radio" name="pendidikan" value="it" required /> IT
+                    <input type="radio" name="pendidikan" value="non it" /> Non IT
+                </div>
+                <div class="form-group">
+                    <label> Kelas Coding yang Dipilih: </label>
+                    <select className="form-control" required>
+                        {option.map(option => (
+                            <option disabled={option.disabled} value={option.value}>
+                                {option.label}  </option>
+                        ))}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Foto Surat Kesungguhan: </label>
+                    <input className="form-control" type="file" ref={surat} required />
+                </div>
+                <div class="form-group">
+                    <label>Harapan Untuk Coding Bootcamp Ini:</label>
+                    <textarea className="form-control" name="harapan" value={data.harapan} onChange={handleInput} />
+                </div>
+                <span style={{ color: "red" }}>{nameErrMsg}</span><br />
+                <span style={{ color: "red" }}>{emailErrMsg}</span><br />
+                <span style={{ color: "red" }}>{hpErrMsg}</span><br />
+                <input type="submit" className={"btn btn-p"} value="Submit" onSubmit={handleSumbit} />
+                <button className={"btn btn-r"} onClick={resetData}>Reset</button>
+            </form>
         </div>
     )
 }
