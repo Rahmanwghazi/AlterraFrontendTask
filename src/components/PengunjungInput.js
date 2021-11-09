@@ -1,6 +1,9 @@
 import { useState } from "react"
-
+import { useDispatch } from "react-redux"
+import { tambahPengunjung } from '../store/PengunjungSlice'
 function PengunjungInput(props) {
+    const dispatch = useDispatch()
+
     const [data, setData] = useState({
         nama: "",
         umur: "",
@@ -25,7 +28,7 @@ function PengunjungInput(props) {
                 umur: data.umur,
                 jenisKelamin: data.jenisKelamin
             }
-            props.tambahPengunjung(newData)
+            dispatch(tambahPengunjung(newData))
             setData({
                 nama: "",
                 umur: "",
@@ -58,13 +61,13 @@ function PengunjungInput(props) {
         <div>
             <div onSubmit={() => { }} style={viewMode}>
                 <p>Masukkan nama Anda</p>
-                <input type="text" placeholder="Nama anda" value={data.nama} name="nama" onChange={onChange}></input><br /><br />
+                <input type="text" placeholder="Nama anda" defaultValue={data.nama} name="nama" onChange={onChange}></input><br /><br />
                 <p>Masukkan umur Anda</p>
-                <input type="text" placeholder="Umur anda" value={data.umur} name="umur" onChange={onChange}></input><br /><br />
+                <input type="text" placeholder="Umur anda" defaultValue={data.umur} name="umur" onChange={onChange}></input><br /><br />
                 <p>Masukkan jenis kelamin Anda</p>
                 <select onChange={onChange} name="jenisKelamin">
-                    <option value="Pria" selected>Pria</option>
-                    <option value="Wanita">Wanita</option>
+                    <option defaultValue="Pria" selected>Pria</option>
+                    <option defaultValue="Wanita">Wanita</option>
                 </select>
                 <button onClick={handleSubmit}>Submit</button>
                 <button onClick={handleTutupInput}>Selesai</button>

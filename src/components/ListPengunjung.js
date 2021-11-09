@@ -1,3 +1,6 @@
+import { useSelector, useDispatch } from "react-redux"
+import { hapusPengunjung } from "../store/PengunjungSlice"
+
 import ListItem from "./ListItem"
 const tableStyle = {
     border: "1px solid black",
@@ -7,8 +10,9 @@ const tableStyle = {
 }
 
 const ListPengunjung = (props) => {
-    const {data, hapusPengunjung} = props
-    
+    const pengunjung = useSelector((state) => state.pengunjung.pengunjung)
+    const dispatch = useDispatch()
+
     return (
         <div>
             <table cellPadding="5px" cellSpacing="0" style={tableStyle}>
@@ -19,7 +23,7 @@ const ListPengunjung = (props) => {
                     <td>Action</td>
                 </thead>
                 <tbody>
-                    {data.map((pengunjung) => <ListItem key={pengunjung.id} item={pengunjung} hapusPengunjung={hapusPengunjung}/>)}
+                    {pengunjung.map((pengunjung) => <ListItem key={pengunjung.id} item={pengunjung} hapusPengunjung={() => {dispatch(hapusPengunjung(pengunjung.id))}}/>)}
                 </tbody>
             </table>
         </div>
