@@ -16,12 +16,12 @@ const Navbar = () => {
                             <li className="nav-item mx-md-2">
                                 <Link to="/" className="nav-link active">HOME</Link>
                             </li>
-                            <div class="dropdown">
-                                <li class="nav-item dropdown">
-                                    <Link to="/about" class="nav-link  dropdown-toggle" href="/#" data-bs-toggle="dropdown"> ABOUT  </Link>
-                                    <ul class="dropdown-menu">
-                                        <li><Link to="/about/about-app" class="dropdown-item" href="/#"> About App</Link></li>
-                                        <li><Link to="/about/about-author" class="dropdown-item" href="/#"> About Author </Link></li>
+                            <div className="dropdown">
+                                <li className="nav-item dropdown">
+                                    <Link to="/about" className="nav-link  dropdown-toggle" href="/#" data-bs-toggle="dropdown"> ABOUT  </Link>
+                                    <ul className="dropdown-menu">
+                                        <li><Link to="/about/about-app" className="dropdown-item" href="/#"> About App</Link></li>
+                                        <li><Link to="/about/about-author" className="dropdown-item" href="/#"> About Author </Link></li>
                                     </ul>
                                 </li>
                             </div>

@@ -1,13 +1,16 @@
 import { useState } from 'react'
 import style from './TodoField.module.css'
+import { useDispatch } from "react-redux"
+import { addTodo } from '../../store/TodoListSlice'
 
 const initData = {
     todo: "",
     completed: false
 }
 
-function TodoInsert(props) {
+function TodoField() {
     const [data, setData] = useState(initData)
+    const dispatch = useDispatch()
 
     const onChange = (event) => {
         setData({
@@ -22,7 +25,7 @@ function TodoInsert(props) {
             todo: data.todo,
             completed: data.completed
         }
-        props.addTodo(newData)
+        dispatch(addTodo(newData))
         setData({
             todo: "",
             completed: false
@@ -38,4 +41,4 @@ function TodoInsert(props) {
 
 }
 
-export default TodoInsert
+export default TodoField
