@@ -2,44 +2,26 @@ import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid'
 import ListPassenger from './ListPassenger';
 import PassengerInput from './PassengerInput';
-import { gql, useQuery, useLazyQuery } from '@apollo/client'
+import { useQuery, useLazyQuery, useMutation } from '@apollo/client'
 import Header from './Header';
+import { AddPassenger, DeletePassenger, GetPassengerById, GetPassengers, UpdatePassenger } from '../graphql/query';
 
-const getPassengers = gql`
-query MyQuery {
-    passenger {
-      jenis_kelamin
-      nama
-      umur
-    }
-  } 
-`
-
-const getPassengerById = gql`
-query MyQuery($id: Int) {
-    passenger(where: {id: {_eq: $id}}) {
-      jenis_kelamin
-      nama
-      umur
-    }
-  }
-`
 
 function Home() {
-    const [value, setValue] = useState([])
-    // const { loading, error, data } = useQuery(getPassengers);
-    const [getPassengers, { data, loading, error }] = useLazyQuery(getPassengerById)
+    // const [value, setValue] = useState([])
+    const { loading, data } = useQuery(GetPassengers);
+    const [getPassengers, { data: data2, loading:loadingGet }] = useLazyQuery(GetPassengerById)
     const [id, setId] = useState(0);
+    const [deletePassenger, {loading: loadingDelete}] = useMutation(DeletePassenger, {
+        refetchQueries: [GetPassengers]
+    })
+    const [addPassenger, {loading: loadingAdd}] = useMutation(AddPassenger, {
+        refetchQueries: [GetPassengers]
+    })
 
-    if (loading) {
-        return (
-            <h5>Loading..</h5>
-        )
-    }
-
-    if (error) {
-        console.log(error)
-    }
+    const [updatePassengerById,{loading: loadingUpdate}] = useMutation(UpdatePassenger,{
+        refetchQueries: [GetPassengers]
+    })
 
     const onGetData = () => {
         getPassengers({
@@ -55,25 +37,46 @@ function Home() {
         }
     }
 
-    const hapusPengunjung = (id) => {
-        setValue((oldData) => oldData.filter(item => {
-            return item.id !== id
-        }))
+    const hapusPengunjung =  (id) => {
+        deletePassenger({
+            variables: {id}
+        })
     }
 
     const tambahPengunjung = (newUser) => {
+        
         const newPengunjung = {
             id: uuidv4(),
             ...newUser
         }
-        setValue((oldData) => [...oldData, newPengunjung])
+        addPassenger({
+            variables: {
+                nama: newPengunjung.nama,
+                umur: newPengunjung.umur,
+                jenis_kelamin: newPengunjung.jenis_kelamin
+            }
+            
+        })
     }
 
-    console.log("ni eh", data)
+    const updatePengunjung = (id, updatedData) => {
+        updatePassengerById({
+            variables: {
+                id: id,
+                nama: updatedData.nama,
+                umur: updatedData.umur,
+                jenis_kelamin: updatedData.jenis_kelamin
+            }
+        })
+    }
+
     return (
         <div>
             <Header />
-            <ListPassenger data={data} hapusPengunjung={hapusPengunjung} />
+            {
+                loading || loadingAdd || loadingDelete || loadingUpdate ? <h5>Loading...</h5> : <br />
+            }    
+            <ListPassenger data={data} hapusPengunjung={hapusPengunjung} updatePengunjung={updatePengunjung} />    
             <PassengerInput tambahPengunjung={tambahPengunjung} />
             <input value={id} onChange={onChangeId} />
             <button onClick={onGetData} >Get Data By Id</button>

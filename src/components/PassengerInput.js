@@ -5,7 +5,7 @@ function PassengerInput(props) {
   const [state, setState] = useState({
     nama: "",
     umur: "",
-    jenisKelamin: "Pria",
+    jenis_kelamin: "Pria",
     editing: true,
   })
 
@@ -17,7 +17,7 @@ function PassengerInput(props) {
   }
 
   const handleSubmit = (e) => {
-    if (state.nama.trim() && state.umur && state.jenisKelamin) {
+    if (state.nama.trim() && state.umur && state.jenis_kelamin) {
       const umur = state.umur
       if (umur >= 75 || umur <= 12) {
         alert("Umur tidak sesuai")
@@ -25,20 +25,44 @@ function PassengerInput(props) {
         const newData = {
           nama: state.nama,
           umur: state.umur,
-          jenisKelamin: state.jenisKelamin,
+          jenis_kelamin: state.jenis_kelamin,
         }
         props.tambahPengunjung(newData)
         setState({
           ...state,
           nama: "",
           umur: "",
-          jenisKelamin: "Pria",
+          jenis_kelamin: "Pria",
         })
       }
     } else {
       alert("Data masih ada yang kosong")
     }
   }
+
+  // const handleUpdate = (e) => {
+  //   if (state.nama.trim() && state.umur && state.jenis_kelamin) {
+  //     const umur = state.umur
+  //     if (umur >= 75 || umur <= 12) {
+  //       alert("Umur tidak sesuai")
+  //     } else {
+  //       const newData = {
+  //         nama: state.nama,
+  //         umur: state.umur,
+  //         jenis_kelamin: state.jenis_kelamin,
+  //       }
+  //       props.updatePengunjung(props.id, newData)
+  //       setState({
+  //         ...state,
+  //         nama: "",
+  //         umur: "",
+  //         jenis_kelamin: "Pria",
+  //       })
+  //     }
+  //   } else {
+  //     alert("Data masih ada yang kosong")
+  //   }
+  // }
 
   const handleBukaInput = () => {
     setState({
@@ -71,7 +95,7 @@ function PassengerInput(props) {
         <p>Masukkan Umur Anda</p>
         <input type="number" className="input-text" placeholder="Umur anda ..." value={state.umur} name="umur" onChange={onChange} />
         <p>Masukkan Jenis Kelamin Anda</p>
-        <select onChange={onChange} name="jenisKelamin">
+        <select onChange={onChange} name="jenis_kelamin">
           <option value="Pria" selected>
             Pria
           </option>
@@ -84,7 +108,7 @@ function PassengerInput(props) {
         </button>
       </div>
       <button className="inputan" onClick={handleBukaInput} style={editMode}>
-        Masukkan Nama Pelanggan
+        Masukkan Nama Pengunjung
       </button>
     </div>
   )

@@ -11,15 +11,16 @@ const ListPassenger = (props) => {
                     <td bgcolor="white" className="removeBorder"></td>
                 </thead>
                 {props.data?.passenger.map(item => (
-                    <ListItem
-                        key={item.id}
+                    <ListItem key={item.id}
                         data={item}
                         hapusPengunjung={props.hapusPengunjung}
+                        updatePengunjung={props.updatePengunjung}
                     />
                 ))}
             </table>
         </div>
     )
+    
 }
 
 export default ListPassenger;
