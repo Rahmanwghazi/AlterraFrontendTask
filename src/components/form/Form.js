@@ -1,7 +1,8 @@
 import './Form.css'
 import { useState } from "react";
 import { useNavigate } from "react-router";
-
+import { useDispatch } from "react-redux";
+import { addForm } from '../../redux/FormSlice';
 
 const starStyle = {
     color: '#ff0000',
@@ -36,8 +37,8 @@ const Form = () => {
             });
         } else if (nameRegex.test(value)) {
             setErrMsg({
-                 ...errMsg,
-                name: "" 
+                ...errMsg,
+                name: ""
             });
         }
 
@@ -77,7 +78,7 @@ const Form = () => {
             });
             const newErrMsg = errMsgs.reduce(
                 (prevErr, newErr) => {
-                    return { ...prevErr, ...newErr};
+                    return { ...prevErr, ...newErr };
                 }
             );
             return newErrMsg;
@@ -95,23 +96,16 @@ const Form = () => {
     };
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
     const onSubmit = e => {
         e.preventDefault();
         console.log(errMsg)
-         if ((data.name !== "" && errMsg.name === "") && (data.phone !== "" && data.email !== "")){
-            let name = document.getElementById("name").value;
-            localStorage.setItem("name", name);
-            let email = document.getElementById("email").value;
-            localStorage.setItem("email", email);
-            let phone = document.getElementById("phone").value;
-            localStorage.setItem("phone", phone);
-            let nationality = document.getElementById("nationality").value;
-            localStorage.setItem("nationality", nationality);
-            let message = document.getElementById("message").value;
-            localStorage.setItem("message", message);
+        if ((data.name !== "" && errMsg.name === "") && (data.phone !== "" && data.email !== "")) {
+            dispatch(addForm(data))
             navigate("/review-message");
         }
-        else{
+        else {
             validateNotEmpty();
         }
     };
@@ -119,9 +113,9 @@ const Form = () => {
     return (
         <div className="col-md-6 mx-auto px-5">
             <form onSubmit={onSubmit}>
-            <h1 className="label">
-                Contact Us
-            </h1>
+                <h1 className="label">
+                    Contact Us
+                </h1>
                 <div className="form-group">
                     <label>Full name <span style={starStyle}>*</span> </label>
                     <input type="text" id="name" className="form-control" placeholder="Your full name here..." name="name" value={data.name} onChange={onChange} />
