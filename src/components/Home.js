@@ -2,27 +2,24 @@ import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid'
 import ListPassenger from './ListPassenger';
 import PassengerInput from './PassengerInput';
-import { useQuery, useLazyQuery, useMutation } from '@apollo/client'
+import { useQuery, useLazyQuery, useMutation, useSubscription } from '@apollo/client'
 import Header from './Header';
-import { AddPassenger, DeletePassenger, GetPassengerById, GetPassengers, UpdatePassenger } from '../graphql/query';
+import { GetPassengersSub } from '../graphql/subscription';
+import { GetPassengerById } from '../graphql/query';
+import { AddPassenger, DeletePassenger, UpdatePassenger } from '../graphql/mutation';
 
 
 function Home() {
     // const [value, setValue] = useState([])
-    const { loading, data } = useQuery(GetPassengers);
+    const { data, loading: loadingSub} = useSubscription(GetPassengersSub)
+    // const { loading, data } = useQuery(GetPassengers);
     const [getPassengers, { data: data2, loading:loadingGet }] = useLazyQuery(GetPassengerById)
     const [id, setId] = useState(0);
-    const [deletePassenger, {loading: loadingDelete}] = useMutation(DeletePassenger, {
-        refetchQueries: [GetPassengers]
-    })
-    const [addPassenger, {loading: loadingAdd}] = useMutation(AddPassenger, {
-        refetchQueries: [GetPassengers]
-    })
+    const [deletePassenger, {loading: loadingDelete}] = useMutation(DeletePassenger)
+    const [addPassenger, {loading: loadingAdd}] = useMutation(AddPassenger)
+    const [updatePassengerById,{loading: loadingUpdate}] = useMutation(UpdatePassenger)
 
-    const [updatePassengerById,{loading: loadingUpdate}] = useMutation(UpdatePassenger,{
-        refetchQueries: [GetPassengers]
-    })
-
+    console.log("datasub", data)
     const onGetData = () => {
         getPassengers({
             variables: {
@@ -74,7 +71,7 @@ function Home() {
         <div>
             <Header />
             {
-                loading || loadingAdd || loadingDelete || loadingUpdate ? <h5>Loading...</h5> : <br />
+                loadingSub || loadingAdd || loadingDelete || loadingUpdate ? <h5>Loading...</h5> : <br />
             }    
             <ListPassenger data={data} hapusPengunjung={hapusPengunjung} updatePengunjung={updatePengunjung} />    
             <PassengerInput tambahPengunjung={tambahPengunjung} />
