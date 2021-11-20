@@ -1,3 +1,44 @@
+# Front-End Engineering Class Tasks
+
+- Introduction to UI/UX
+  - [Whimsical](https://whimsical.com/clothhub-H2pxCGvBrQArUeMz8k7KXi)
+  - [Figma](https://www.figma.com/file/XVZP5tqykrA30cqCo2JjEU/ClothHub?node-id=0%3A1)
+- HTML-CSS Fundamental
+  - [Task](https://github.com/Rahmanwghazi/AlterraFrontendTask/tree/html-css-fundamental)
+- React Introduction
+  - [Task](https://github.com/Rahmanwghazi/AlterraFrontendTask/tree/react-introduction)
+- React Fundamental
+  - [Task](https://github.com/Rahmanwghazi/AlterraFrontendTask/tree/react-fundamental)
+- Event Handling
+  - [Exercise](https://github.com/Rahmanwghazi/AlterraFrontendTask/tree/event-handling-exercise)
+  - [Task](https://github.com/Rahmanwghazi/AlterraFrontendTask/tree/event-handling-task)
+- React Hooks
+  - [Exercise](https://github.com/Rahmanwghazi/AlterraFrontendTask/tree/react-hooks-exercise)
+  - [Task](https://github.com/Rahmanwghazi/AlterraFrontendTask/tree/react-hooks-task)
+- React Routing
+  - [Task](https://github.com/Rahmanwghazi/AlterraFrontendTask/tree/react-router-task)
+- React Form
+  - [Exercise](https://github.com/Rahmanwghazi/AlterraFrontendTask/tree/react-form-exercise)
+  - [Task](https://github.com/Rahmanwghazi/AlterraFrontendTask/tree/react-form-task)
+- Global State Management with Redux
+  - [Exercise](https://github.com/Rahmanwghazi/AlterraFrontendTask/tree/react-redux-exercise)
+  - [Task](https://github.com/Rahmanwghazi/AlterraFrontendTask/tree/react-redux-task)
+- Testing
+  - [Exercise](https://github.com/Rahmanwghazi/AlterraFrontendTask/tree/react-testing-exercise)
+  - [Task](https://github.com/Rahmanwghazi/AlterraFrontendTask/tree/react-testing-task)
+- Deployment
+  - [Task](https://618bf499cdbaed49ddc8eb5c--taskdeploy-wafiq.netlify.app/)
+- Review
+  - [Task](https://github.com/Rahmanwghazi/AlterraFrontendTask/tree/review-fundamental)
+- GraphQL-Query
+  - [Exercise](https://github.com/Rahmanwghazi/AlterraFrontendTask/tree/query-apollo-exercise)
+  - [Task](https://github.com/Rahmanwghazi/AlterraFrontendTask/tree/query-apollo-task)
+- GraphQL-Mutation
+  - [Task](https://github.com/Rahmanwghazi/AlterraFrontendTask/tree/graphql-mutation-task)
+- GraphQL-Subscription
+  - [Task](https://github.com/Rahmanwghazi/AlterraFrontendTask/tree/graphql-subscription-task)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
